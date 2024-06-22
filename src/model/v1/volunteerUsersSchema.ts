@@ -1,7 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 
 export interface IVolunteerUser {
-    userId: string
     name: string,
     email: string,
     phone: string,

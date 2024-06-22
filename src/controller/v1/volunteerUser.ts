@@ -18,9 +18,10 @@ export default class VolunteerUserHandler {
     }
 
     static async create(req: Request, res: Response) {
+        const userId = res.locals.userId
         const body: IVolunteerUser = req.body
-
-        const volunteerUser = await VolunteerUserSchema.create(body)
+        console.log(body)
+        const volunteerUser = await VolunteerUserSchema.create({userId, ...body})
         
         res.status(200).json({
             status: "success",
