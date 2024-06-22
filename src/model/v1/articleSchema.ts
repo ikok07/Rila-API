@@ -3,7 +3,13 @@ import mongoose, {Schema} from "mongoose";
 export interface IArticle {
     image: string,
     title: string,
-    content: string,
+    content: {
+        text: string,
+        bullets: {
+            heading: string,
+            content: string
+        }[]
+    },
     metadata?: {
         creation: Date
     }
@@ -19,8 +25,19 @@ const ArticleSchema = mongoose.model("articles", new Schema({
         required: true
     },
     content: {
-        type: String,
-        required: true
+        type: {
+            text: String,
+            bullets: [{
+                heading: {
+                    type: String,
+                    required: true
+                },
+                content: {
+                    type: String,
+                    required: true
+                }
+            }]
+        }
     },
     metadata: {
         creation: {

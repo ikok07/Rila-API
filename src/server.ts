@@ -9,6 +9,7 @@ import dotenv from "dotenv"
 import {connectDB} from "./database.js";
 import mainRouter from "./routes/main.js";
 import ErrorHandler from "./middleware/errorHandler.js";
+import mongoose from "mongoose";
 
 dotenv.config({
     debug: true,
@@ -31,6 +32,10 @@ app.use(express.json({limit: "10kb"}))
 app.use(express.urlencoded({extended: true, limit: "10kb"}))
 app.use(mongoSanitize())
 app.use(compression())
+
+for (let i = 0; i < 5; i++) {
+    console.log(new mongoose.Types.ObjectId().toString())
+}
 
 connectDB()
 app.use(mainRouter)

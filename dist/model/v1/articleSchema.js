@@ -9,8 +9,19 @@ const ArticleSchema = mongoose.model("articles", new Schema({
         required: true
     },
     content: {
-        type: String,
-        required: true
+        type: {
+            text: String,
+            bullets: [{
+                    heading: {
+                        type: String,
+                        required: true
+                    },
+                    content: {
+                        type: String,
+                        required: true
+                    }
+                }]
+        }
     },
     metadata: {
         creation: {
